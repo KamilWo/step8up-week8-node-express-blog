@@ -1,6 +1,7 @@
 ## 🛠️ Recommended Free Tools for Recording Your Script in Action
 
-Here are some free tools to record a demonstration of your Python README generator script. These tools work across different operating systems and are simple to use.
+Here are some free tools to record a demonstration of your Python README generator script. These tools work across
+different operating systems and are simple to use.
 
 ---
 
@@ -8,14 +9,15 @@ Here are some free tools to record a demonstration of your Python README generat
 
 1. **[Loom](https://www.loom.com/)** (Browser Extension or App)
 
-   - Free version allows up to 5-minute videos.
-   - Simple interface with screen and webcam support.
-   - Videos are automatically hosted online for easy sharing.
+- Free version allows up to 5-minute videos.
+- Simple interface with screen and webcam support.
+- Videos are automatically hosted online for easy sharing.
 
 2. **[Screenity](https://chrome.google.com/webstore/detail/screenity-screen-recording/)** (Chrome Extension)
-   - Open-source, browser-based screen recorder.
-   - Allows live annotations while recording.
-   - Great for short walkthroughs.
+
+- Open-source, browser-based screen recorder.
+- Allows live annotations while recording.
+- Great for short walkthroughs.
 
 ---
 
