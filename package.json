@@ -1,6 +1,6 @@
 {
   "name": "step8up-week8-node-express-blog",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Full-Stack Blog Application using Node.js and Express",
   "private": true,
   "scripts": {
@@ -10,6 +10,7 @@
     "dev": "nodemon src/server/server.js",
     "lint": "eslint src/**/*.js",
     "prettier": "npx prettier ./src/**/*.js --write",
+    "seed": "node src/server/seeds/seed.js",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:unit": "jest tests/unit",
@@ -69,6 +70,7 @@
     "express": "^5.1.0",
     "express-session": "^1.18.2",
     "pg": "^8.16.3",
+    "sequelize": "^6.37.7",
     "uuid": "^11.1.0",
     "yarn": "^1.22.22"
   },
