@@ -2,7 +2,9 @@
 
 ## Challenge
 
-This week, you've learned how to build a complete **back-end solution** with **CRUD operations** connected to a **MySQL database**. You've also explored how to interact with this backend using **API calls from a web page (front-end)**.
+This week, you've learned how to build a complete **back-end solution** with **CRUD operations** connected to a
+**PostgreSQL database**. You've also explored how to interact with this backend using **API calls from a web page
+(front-end)**.
 
 Now, it's time to put your skills into practice and build your first **backend application**!
 
@@ -26,12 +28,17 @@ Once completed, you will **deploy your application** to [Render](https://render.
 ## Key Learnings
 
 - Developing **CRUD operations** in a full stack application.
-- Running and testing a **Node.js/Express backend** with a **MySQL database** with Postman
+- Running and testing a **Node.js/Express backend** with a **PostgreSQL database** with Postman
 - Deploying a **full stack database-driven application** to **Render**.
 
 ## User Story
 
-_As a user, I want to register and log in to a blogging platform so that I can create, update, and delete my own blog posts. I also want to browse and filter blog posts by category._
+_**As a** user,
+
+**I want** to register and log in to a blogging platform so that I can create, update, and delete my own blog
+posts.
+
+**I also want** to browse and filter blog posts by category._
 
 ## Acceptance Criteria
 
@@ -49,10 +56,10 @@ _As a user, I want to register and log in to a blogging platform so that I can c
 
 1. **Clone the repository** and navigate to the project directory.
 2. **Copy the `.env.example` file** and rename it to `.env`, then update the environment variables.
-3. **Open MySQL and create the database:**
+3. **Open PostgreSQL and create the database:**
 
 ```bash
-mysql -u root -p
+psql -u root -p
 ```
 
 4. **Install dependencies**
@@ -67,7 +74,7 @@ npm install
 npm run seed
 ```
 
-6. **Run the application locall**
+6. **Run the application locally**
 
 ```bash
 npm start
@@ -83,9 +90,11 @@ http://localhost:3001
 
 1. Create an account on [Render](https://render.com/).
 2. Set up a **web service** for your **backend**.
-3. Use **Render's MySQL database hosting** or an external MySQL provider such as:
-   - [PlanetScale](https://planetscale.com/)
-   - [ClearDB (via Heroku)](https://elements.heroku.com/addons/cleardb)
+3. Use **Render's PostgreSQL database hosting** or an external PostgreSQL provider such as:
+
+- [PlanetScale](https://planetscale.com/)
+- [ClearDB (via Heroku)](https://elements.heroku.com/addons/cleardb)
+
 4. Update your **database connection settings** in `.env` to match your MySQL provider.
 5. Deploy your **front-end** (if separate) using **Render Static Sites** or another hosting service.
 
@@ -95,3 +104,4 @@ http://localhost:3001
 - [Express Documentation](https://expressjs.com/)
 - [Sequelize Documentation](https://sequelize.org/)
 - [MySQL Documentation](https://dev.mysql.com/doc/)
+- [PostgreSQL Documentation](https://www.postgresql.org/docs/)

@@ -61,11 +61,16 @@
     ]
   },
   "dependencies": {
+    "@sequelize/postgres": "^7.0.0-alpha.46",
+    "bcrypt": "^6.0.0",
+    "connect-session-sequelize": "^8.0.2",
     "cors": "^2.8.5",
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
+    "express-session": "^1.18.2",
     "pg": "^8.16.3",
-    "uuid": "^11.1.0"
+    "uuid": "^11.1.0",
+    "yarn": "^1.22.22"
   },
   "devDependencies": {
     "eslint": "^9.32.0",
@@ -77,6 +82,7 @@
     "nodemon": "^3.1.10",
     "parcel": "^2.15.4",
     "prettier": "^3.6.2",
+    "rimraf": "^6.0.1",
     "stylelint": "^16.20.0",
     "stylelint-config-standard": "^38.0.0",
     "supertest": "^7.1.3"
