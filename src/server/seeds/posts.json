@@ -1,0 +1,42 @@
+[
+  {
+    "title": "The Rise of AI in Web Development",
+    "content": "AI is transforming how we build websites, making development faster and smarter."
+  },
+  {
+    "title": "Understanding JavaScript Closures",
+    "content": "Closures allow functions to retain access to variables even after execution."
+  },
+  {
+    "title": "Node.js Performance Optimization Tips",
+    "content": "Learn how to speed up your Node.js applications with caching and clustering."
+  },
+  {
+    "title": "Mastering Sequelize for Database Management",
+    "content": "Sequelize simplifies working with databases in Node.js."
+  },
+  {
+    "title": "Async/Await in JavaScript Explained",
+    "content": "Understanding asynchronous JavaScript using async/await."
+  },
+  {
+    "title": "Introduction to GraphQL",
+    "content": "GraphQL provides a flexible alternative to REST APIs."
+  },
+  {
+    "title": "Why TypeScript is Gaining Popularity",
+    "content": "TypeScript enhances JavaScript by adding static typing."
+  },
+  {
+    "title": "Building RESTful APIs with Express",
+    "content": "A guide to creating scalable RESTful APIs using Express.js."
+  },
+  {
+    "title": "Dockerizing Your Node.js Application",
+    "content": "Learn how to containerize your Node.js app with Docker."
+  },
+  {
+    "title": "How to Secure a Node.js Application",
+    "content": "Implement security best practices for your Node.js apps."
+  }
+]
