@@ -5,10 +5,15 @@ require("dotenv").config();
 const sequelize = new Sequelize(process.env.DATABASE_URL, {
   dialect: "postgres",
   // For production environments (like Render), a secure SSL connection is required.
-  ssl:
-    process.env.NODE_ENV === "production"
-      ? { rejectUnauthorized: false }
-      : false,
+  dialectOptions: {
+    ssl:
+      process.env.NODE_ENV === "production"
+        ? {
+            require: true, // Enforce SSL connections
+            rejectUnauthorized: false, // Allow self-signed certificates
+          }
+        : false,
+  },
   logging: false, // Set to console.log to see executed SQL queries
 });
 
