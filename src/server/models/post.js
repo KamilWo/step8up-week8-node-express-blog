@@ -1,4 +1,4 @@
-const { Model, DataTypes } = require("sequelize");
+const { DataTypes, Model } = require("sequelize");
 const sequelize = require("../config/sequelize");
 
 class Post extends Model {}
@@ -23,7 +23,7 @@ Post.init(
     userId: {
       type: DataTypes.UUID,
       references: {
-        model: "user", // This should match the table name of the User model
+        model: "users", // This should match the table name of the User model
         key: "id",
       },
     },
@@ -33,7 +33,8 @@ Post.init(
     timestamps: true,
     freezeTableName: true,
     underscored: true,
-    modelName: "post",
+    modelName: "Post",
+    tableName: "posts",
   }
 );
 

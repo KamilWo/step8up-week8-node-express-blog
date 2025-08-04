@@ -4,17 +4,20 @@
 const postService = require("../services/postService");
 
 /**
- * Get all posts.
+ * Get all posts, with optional filtering by category.
  * @param {object} req - Express request object.
  * @param {object} res - Express response object.
  */
 const getAllPosts = async (req, res) => {
   try {
-    const posts = await postService.getPosts();
+    // Extract the categoryId from the query parameters.
+    const {category: categoryId} = req.query;
+    // Pass the categoryId (which can be undefined) to the service.
+    const posts = await postService.getPosts(categoryId);
     res.status(200).json(posts);
   } catch (error) {
     console.error("Error fetching posts:", error);
-    res.status(500).json({ message: "Failed to retrieve posts." });
+    res.status(500).json({message: "Failed to retrieve posts."});
   }
 };
 
@@ -27,12 +30,12 @@ const getPost = async (req, res) => {
   try {
     const post = await postService.getPostById(req.params.id);
     if (!post) {
-      return res.status(404).json({ message: "Post not found." });
+      return res.status(404).json({message: "Post not found."});
     }
     res.status(200).json(post);
   } catch (error) {
     console.error("Error fetching post:", error);
-    res.status(500).json({ message: "Failed to retrieve post." });
+    res.status(500).json({message: "Failed to retrieve post."});
   }
 };
 
@@ -48,7 +51,8 @@ const createPost = async (req, res) => {
     const post = await postService.createPost(req.body, userId);
     res.status(201).json(post);
   } catch (error) {
-    res.status(500).json({ message: "Failed to create post." });
+    console.error("Error creating post:", error);
+    res.status(500).json({message: "Failed to create post."});
   }
 };
 
@@ -66,11 +70,12 @@ const updatePost = async (req, res) => {
     if (!updatedPost) {
       return res
         .status(404)
-        .json({ message: "Post not found or you are not the owner." });
+        .json({message: "Post not found or you are not the owner."});
     }
     res.json(updatedPost);
   } catch (error) {
-    res.status(500).json({ message: "Failed to update post." });
+    console.error("Error updating post:", error);
+    res.status(500).json({message: "Failed to update post."});
   }
 };
 
@@ -88,11 +93,12 @@ const deletePost = async (req, res) => {
     if (!success) {
       return res
         .status(404)
-        .json({ message: "Post not found or you are not the owner." });
+        .json({message: "Post not found or you are not the owner."});
     }
     res.status(204).end(); // Success, no content
   } catch (error) {
-    res.status(500).json({ message: "Failed to delete post." });
+    console.error("Error deleting post:", error);
+    res.status(500).json({message: "Failed to delete post."});
   }
 };
 

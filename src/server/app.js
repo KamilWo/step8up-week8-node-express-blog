@@ -2,9 +2,7 @@
 const express = require("express"); // For building web application
 const path = require("path"); // For serving static files
 const cors = require("cors"); // For frontend/backend communication in development
-const session = require("express-session"); // The middleware for managing sessions in Express.
-const SequelizeStore = require("connect-session-sequelize")(session.Store);
-const sequelize = require("./config/sequelize"); // Import the sequelize instance
+const sessionMiddleware = require("./config/session"); // Import the configured session middleware
 const allRoutes = require("./routes"); // Import the main router
 const errorHandler = require("./middleware/errorHandler"); // Global error handling middleware
 
@@ -12,26 +10,7 @@ const errorHandler = require("./middleware/errorHandler"); // Global error handl
 const app = express();
 
 // Session Middleware Setup
-const sessionStore = new SequelizeStore({
-  db: sequelize,
-});
-
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET, // A secret key for signing the session ID cookie
-    store: sessionStore,
-    resave: false, // Don't save session if unmodified
-    saveUninitialized: false, // Don't create session until something is stored
-    cookie: {
-      secure: process.env.NODE_ENV === "production", // Use secure cookies in production
-      httpOnly: true, // Prevents client-side JS from reading the cookie
-      maxAge: 24 * 60 * 60 * 1000, // Cookie expires in 24 hours
-    },
-  })
-);
-
-// Sync the session store table
-sessionStore.sync();
+app.use(sessionMiddleware);
 
 // Middleware to handle CORS (Cross-Origin Resource Sharing)
 app.use(cors());

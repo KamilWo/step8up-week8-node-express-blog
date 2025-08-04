@@ -1,12 +1,16 @@
-const { Model, DataTypes } = require("sequelize");
-
+const { DataTypes, Model } = require("sequelize");
 const sequelize = require("../config/sequelize");
 
 class Category extends Model {}
 
 Category.init(
   {
-    category_name: {
+    id: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true,
+    },
+    name: {
       type: DataTypes.TEXT,
       allowNull: false,
     },
@@ -16,7 +20,8 @@ Category.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: "category",
+    modelName: "Category",
+    tableName: "categories",
   }
 );
 

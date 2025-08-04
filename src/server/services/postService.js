@@ -1,24 +1,40 @@
 // This file handles the business logic for Blog posts, using Sequelize.
 // It interacts directly with the data source (in this case, a PostgreSQL database).
 
-const { Post, User } = require("../models"); // Use the associated models
+const sequelize = require("../config/sequelize");
+const { User, Post, Category } = require("../models"); // Use the associated models
 
 /**
- * Reads all posts from the database, including the author's username.
+ * Reads all posts from the database, optionally filtering by category.
+ * @param {string|null} categoryId - The ID of the category to filter by.
  * @returns {Promise<Post[]>} A promise that resolves to an array of Post objects.
  */
-const getPosts = async () => {
+const getPosts = async (categoryId = null) => {
   try {
-    // Use include to join the User table and get the username
-    return await Post.findAll({
+    const findOptions = {
       include: [
         {
           model: User,
+          as: "user", // Use the alias from the model association
           attributes: ["username"], // Only include the username
+        },
+        {
+          model: Category,
+          as: 'categories', // Use the alias from the model association
+          attributes: ['id', 'name'],
+          through: { attributes: [] }, // Don't include junction table data
         },
       ],
       order: [["updatedAt", "DESC"]],
-    });
+    };
+
+    // If a categoryId is provided, add a 'where' clause to the Category include.
+    // This tells Sequelize to only return posts associated with that category.
+    if (categoryId) {
+      findOptions.include[1].where = { id: categoryId };
+    }
+
+    return await Post.findAll(findOptions);
   } catch (error) {
     console.error("Error fetching posts from database:", error);
     throw error;
@@ -36,7 +52,14 @@ const getPostById = async (id) => {
       include: [
         {
           model: User,
+          as: "user",
           attributes: ["username"],
+        },
+        {
+          model: Category,
+          as: 'categories', // Use the alias from the model association
+          attributes: ['id', 'name'],
+          through: { attributes: [] }, // Don't include junction table data
         },
       ],
     });
@@ -54,38 +77,83 @@ const getPostById = async (id) => {
  * @returns {Promise<Post>} A promise that resolves to the newly created Post object.
  */
 const createPost = async (postData, userId) => {
+  const { title, content, categoryIds = [] } = postData;
+
+  // Use a transaction to ensure atomicity
+  const t = await sequelize.transaction();
+
   try {
-    const { title, content } = postData;
-    // Spread the postData and add the userId from the session
-    return await Post.create({ title, content, userId: userId });
+    const newPost = await Post.create(
+      {
+        title,
+        content,
+        userId,
+      },
+      { transaction: t }
+    );
+
+    if (categoryIds.length > 0) {
+      await newPost.setCategories(categoryIds, { transaction: t });
+    }
+
+    await t.commit();
+
+    return Post.findByPk(newPost.id, {
+      include: [{ model: Category, as: "categories" }],
+    });
   } catch (error) {
+    // If any step fails, roll back the transaction
+    await t.rollback();
     console.error("Error creating post in database:", error);
-    throw error;
+    throw error; // Re-throw the error to be handled by the controller
   }
 };
 
 /**
- * Updates a post, but only if the user is the owner.
+ * Updates a post and its categories, but only if the user is the owner.
  * @param {string} postId - The ID of the post to update.
  * @param {string} userId - The ID of the user attempting the update.
- * @param {object} updatedData - The new data for the post.
+ * @param {object} updatedData - The new data for the post (title, content, categoryIds).
  * @returns {Promise<Post|null>} A promise that resolves to the updated Post or null if not found/not authorized.
  */
 const updatePost = async (postId, userId, updatedData) => {
+  const { title, content, categoryIds } = updatedData;
+
+  // Use a transaction for atomicity
+  const t = await sequelize.transaction();
+
   try {
-    const { title, content } = updatedData;
-    const [affectedRows, [updatedPost]] = await Post.update(
-      { title, content },
-      {
-        where: {
-          id: postId,
-          userId: userId, // CRITICAL: Ensures the user owns the post
-        },
-        returning: true, // Return the updated post object
-      }
-    );
-    return affectedRows > 0 ? updatedPost : null;
+    const postToUpdate = await Post.findOne({
+      where: { id: postId, userId: userId },
+      transaction: t,
+    });
+
+    // If post not found or user is not the owner, return null
+    if (!postToUpdate) {
+      await t.rollback();
+      return null;
+    }
+
+    postToUpdate.title = title;
+    postToUpdate.content = content;
+    await postToUpdate.save({ transaction: t });
+
+    if (categoryIds && Array.isArray(categoryIds)) {
+      await postToUpdate.setCategories(categoryIds, { transaction: t });
+    }
+
+    await t.commit();
+
+    return Post.findByPk(postId, {
+      include: [
+        { model: User, as: "user", attributes: ["username"] },
+        { model: Category, as: "categories", attributes: ["id", "name"], through: { attributes: [] } },
+      ],
+    });
+
   } catch (error) {
+    // In case of error, roll back the transaction
+    await t.rollback();
     console.error(`Error updating post with id ${postId}:`, error);
     throw error;
   }
