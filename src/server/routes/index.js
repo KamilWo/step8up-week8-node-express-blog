@@ -7,6 +7,7 @@ const router = express.Router();
 const sequelize = require("../config/sequelize"); // Connect to the database for health check
 const postsApiRoutes = require("./api/posts"); // Import API routes
 const authApiRoutes = require("./api/auth");
+const categoryApiRoutes = require("./api/categories");
 
 // --- Health Check Route ---
 router.get("/healthz", async (req, res) => {
@@ -25,6 +26,7 @@ router.get("/healthz", async (req, res) => {
 // Mount API routes under a specific prefixes
 router.use("/api/auth", authApiRoutes);
 router.use("/api/posts", postsApiRoutes);
+router.use("/api/categories", categoryApiRoutes);
 
 // A simple welcome route for the root API path
 router.get("/api", (req, res) => {

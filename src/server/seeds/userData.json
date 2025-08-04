@@ -1,12 +1,12 @@
 [
   {
-    "username": "TechGuru",
-    "email": "tech.guru@example.com",
-    "password": "password12345"
+    "username": "Kamil",
+    "email": "kamil@example.com",
+    "password": "password12345%$z"
   },
   {
     "username": "CodeNinja",
     "email": "code.ninja@example.com",
-    "password": "password67890"
+    "password": "password67890&^£j"
   }
 ]

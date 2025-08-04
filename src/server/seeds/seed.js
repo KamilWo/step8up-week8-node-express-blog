@@ -2,7 +2,7 @@ const sequelize = require("../config/sequelize");
 const { User, Post, Category } = require("../models");
 
 const userData = require("./userData.json");
-const postData = require("./posts.json");
+const postData = require("./postData.json");
 const categoryData = require("./categoryData.json");
 
 const seedDatabase = async () => {
@@ -19,7 +19,7 @@ const seedDatabase = async () => {
     console.log("\n----- USERS SEEDED -----\n");
 
     // Seed categories
-    const categories = await Category.bulkCreate(categoryData, {
+    await Category.bulkCreate(categoryData, {
       returning: true,
     });
     console.log("\n----- CATEGORIES SEEDED -----\n");
@@ -38,14 +38,23 @@ const seedDatabase = async () => {
     // --- Create Many-to-Many Relationships ---
     const allPosts = await Post.findAll();
     const allCategories = await Category.findAll();
+    const categoryCount = allCategories.length;
 
     for (const post of allPosts) {
-      // Assign 1 to 3 random categories to each post
-      const numCategories = Math.floor(Math.random() * 3) + 1;
-      const shuffledCategories = allCategories.sort(() => 0.5 - Math.random());
-      const selectedCategories = shuffledCategories.slice(0, numCategories);
+       const numCategoriesToAssign =
+        Math.floor(Math.random() * Math.min(3, categoryCount)) + 1;
 
-      await post.addCategories(selectedCategories);
+      const selectedIndices = new Set();
+      while (selectedIndices.size < numCategoriesToAssign) {
+        const randomIndex = Math.floor(Math.random() * categoryCount);
+        selectedIndices.add(randomIndex);
+      }
+
+      const categoriesToAssign = [...selectedIndices].map(
+        (index) => allCategories[index]
+      );
+
+      await post.addCategories(categoriesToAssign);
     }
     console.log("\n----- POST-CATEGORY RELATIONSHIPS SEEDED -----\n");
 
