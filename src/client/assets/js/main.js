@@ -29,7 +29,7 @@ function renderPosts(posts) {
     postCard.className = "post-card";
     postCard.innerHTML = `
       <div class="post-card-header">
-        <h2><a href="/post.html?id=${post.id}">${post.title}</a></h2>
+        <h2><a href="./post.html?id=${post.id}">${post.title}</a></h2>
       </div>
       <div class="post-card-meta">
         <span>By ${post.user?.username || 'Unknown'} on ${postDate}</span>
@@ -40,7 +40,7 @@ function renderPosts(posts) {
       <div class="post-card-footer">
         <div class="post-categories">${categoriesHtml}</div>
         <div class="post-actions">
-          ${user && user.id === post.userId ? `<a href="/edit-post.html?id=${post.id}" class="btn">Edit</a>` : ""}
+          ${user && user.id === post.userId ? `<a href="./edit-post.html?id=${post.id}" class="btn btn-primary">Edit</a>` : ""}
         </div>
       </div>
     `;

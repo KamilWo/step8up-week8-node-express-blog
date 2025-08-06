@@ -28,7 +28,7 @@ function renderPost(post) {
     <div class="post-header">
       <h1>${post.title}</h1>
       <div class="post-meta">
-        <span>By ${post.User.username} on ${postDate}</span>
+        <span>By ${post.User?.username || "Unknown"} on ${postDate}</span>
       </div>
     </div>
     <div class="post-body">

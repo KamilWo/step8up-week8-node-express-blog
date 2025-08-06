@@ -24,7 +24,7 @@ function updateHeaderNav() {
     userNav.innerHTML = `
       <div class="user-menu">
         <span class="username">${user.username}</span>
-        <button id="logout-btn" class="btn">Logout</button>
+        <button id="logout-btn" class="btn btn-primary">Logout</button>
       </div>
     `;
     // Add the event listener for the newly created logout button
@@ -38,8 +38,8 @@ function updateHeaderNav() {
   } else {
     // If no user is logged in, show the login and register buttons
     userNav.innerHTML = `
-      <a href="/login.html" class="btn">Login</a>
-      <a href="/register.html" class="btn btn-primary">Register</a>
+      <a href="./login.html" class="btn btn-primary">Login</a>
+      <a href="./register.html" class="btn btn-primary">Register</a>
     `;
   }
 }
