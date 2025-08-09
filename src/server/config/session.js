@@ -21,7 +21,9 @@ sessionStore.sync();
 module.exports = session({
   // A secret key for signing the session ID cookie.
   // It's crucial this is stored in an environment variable and not hardcoded.
-  secret: process.env.SESSION_SECRET || "a-very-long-and-super-secret-string-for-sessions",
+  secret:
+    process.env.SESSION_SECRET ||
+    "a-very-long-and-super-secret-string-for-sessions",
   // Don't save session if unmodified
   resave: false,
   // Don't create a session until something is stored
@@ -33,6 +35,8 @@ module.exports = session({
     httpOnly: true,
     // Use secure cookies in production (requires HTTPS)
     secure: process.env.NODE_ENV === "production",
+    // Specifies how cookies are sent with cross-site requests.
+    sameSite: "lax",
     // Cookie expires in 24 hours
     maxAge: 24 * 60 * 60 * 1000,
   },

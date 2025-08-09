@@ -40,7 +40,10 @@ function renderPosts(posts) {
       <div class="post-card-footer">
         <div class="post-categories">${categoriesHtml}</div>
         <div class="post-actions">
-          ${user && user.id === post.userId ? `<a href="./edit-post.html?id=${post.id}" class="btn btn-primary">Edit</a>` : ""}
+          ${user && user.id === post.userId ? `
+             <a href="./edit-post.html?id=${post.id}" class="btn btn-primary">Edit</a>
+             <a class="btn btn-danger delete-post-btn" data-post-id="${post.id}">Delete</a>
+           ` : ""}
         </div>
       </div>
     `;
@@ -88,4 +91,26 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   loadPosts();
   loadCategories();
+
+  // Use event delegation on the post list to handle delete clicks
+  postList.addEventListener("click", async (event) => {
+    // Check if a delete button was clicked
+    if (event.target.matches(".delete-post-btn")) {
+      const postId = event.target.dataset.postId;
+
+      // Confirm with the user before deleting
+      const isConfirmed = confirm("Are you sure you want to delete this post?");
+
+      if (isConfirmed) {
+        try {
+          await api.deletePost(postId);
+          // Refresh the post list to show the change
+          loadPosts();
+        } catch (error) {
+          // The api.mjs module already logs the error, so we can just alert the user.
+          alert("Failed to delete post. Please try again.");
+        }
+      }
+    }
+  });
 });

@@ -12,6 +12,12 @@ const app = express();
 // Session Middleware Setup
 app.use(sessionMiddleware);
 
+// In production, trust the first proxy (e.g., Render's load balancer).
+// This is necessary for `cookie.secure` to work correctly.
+if (process.env.NODE_ENV === "production") {
+  app.set("trust proxy", 1);
+}
+
 // Middleware to handle CORS (Cross-Origin Resource Sharing)
 app.use(cors());
 

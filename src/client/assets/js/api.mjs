@@ -55,5 +55,10 @@ export const updatePost = (postId, postData) =>
     body: JSON.stringify(postData),
   });
 
+export const deletePost = (postId) =>
+  request(`/posts/${postId}`, {
+    method: "DELETE",
+  });
+
 // Categories API
 export const getCategories = () => request("/categories");
