@@ -1,4 +1,4 @@
-import * as api from './api.js';
+import * as api from './api.mjs';
 
 const loginForm = document.getElementById("login-form");
 const registerForm = document.getElementById("register-form");

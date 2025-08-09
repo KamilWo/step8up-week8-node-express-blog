@@ -78,6 +78,7 @@ yarn-error.log*
 # Dependency directories
 node_modules/
 jspm_packages/
+package-lock.json
 
 # Snowpack dependency directory (https://snowpack.dev/)
 web_modules/
@@ -134,7 +135,7 @@ dist
 .cache/
 # Comment in the public line in if your project uses Gatsby and not Next.js
 # https://nextjs.org/blog/next-9-1#public-directory-support
-# public
+public
 
 # vuepress build output
 .vuepress/dist
@@ -199,3 +200,13 @@ Thumbs.db
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+dist-ssr
+*.local
+
+# Editor directories and files
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

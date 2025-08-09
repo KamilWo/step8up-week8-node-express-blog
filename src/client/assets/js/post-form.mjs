@@ -1,4 +1,4 @@
-import * as api from "./api.js";
+import * as api from "./api.mjs";
 
 const postForm = document.getElementById("post-form");
 const categoriesContainer = document.getElementById("categories-container");

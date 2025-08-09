@@ -1,4 +1,4 @@
-import * as api from "./api.js";
+import * as api from "./api.mjs";
 
 const postContentArea = document.getElementById("post-content-area");
 const pageTitle = document.querySelector("title");
