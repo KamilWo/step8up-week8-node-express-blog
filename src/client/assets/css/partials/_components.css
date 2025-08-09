@@ -9,7 +9,9 @@
   font-size: 0.9rem;
   font-weight: bold;
   color: #fff;
-  transition: background-color 0.2s ease-in-out, transform 0.1s ease;
+  transition:
+    background-color 0.2s ease-in-out,
+    transform 0.1s ease;
 }
 
 .btn:hover {
@@ -22,7 +24,19 @@
 }
 .btn-primary:hover {
   background-color: var(--color-primary-hover);
-  color: #fff;
+  color: var(--color-text-white);
+}
+
+.btn-danger {
+  background-color: var(--color-danger);
+  color: var(--color-text-white);
+  border: 1px solid var(--color-danger);
+}
+
+.btn-danger:hover {
+  background-color: var(--color-danger-hover);
+  border-color: var(--color-danger-hover);
+  color: var(--color-text-white);
 }
 
 /* --- Forms --- */
@@ -170,7 +184,9 @@ textarea {
   font-size: 0.8rem;
   font-weight: 500;
   margin-right: var(--spacing-xs);
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
 .category-filter .category-tag {
