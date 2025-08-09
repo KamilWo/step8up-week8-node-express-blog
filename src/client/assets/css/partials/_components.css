@@ -54,6 +54,8 @@ legend {
 input[type="text"],
 input[type="email"],
 input[type="password"],
+#username,
+#title,
 textarea {
   width: 100%;
   padding: var(--spacing-sm);
