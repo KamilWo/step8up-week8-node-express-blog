@@ -3,7 +3,7 @@
 ## Challenge
 
 This week, you've learned how to build a complete **back-end solution** with **CRUD operations** connected to a
-**PostgreSQL database**. You've also explored how to interact with this backend using **API calls from a web page
+**MySQL/PostgreSQL database**. You've also explored how to interact with this backend using **API calls from a web page
 (front-end)**.
 
 Now, it's time to put your skills into practice and build your first **backend application**!
@@ -28,7 +28,7 @@ Once completed, you will **deploy your application** to [Render](https://render.
 ## Key Learnings
 
 - Developing **CRUD operations** in a full stack application.
-- Running and testing a **Node.js/Express backend** with a **PostgreSQL database** with Postman
+- Running and testing a **Node.js/Express backend** with a **MySQL/PostgreSQL database** with Postman
 - Deploying a **full stack database-driven application** to **Render**.
 
 ## User Story
@@ -56,8 +56,12 @@ posts.
 
 1. **Clone the repository** and navigate to the project directory.
 2. **Copy the `.env.example` file** and rename it to `.env`, then update the environment variables.
-3. **Open PostgreSQL and create the database:**
+3. **Open MySQL or PostgreSQL and create the database:**
 
+```bash
+mysql -u root -p
+```
+or
 ```bash
 psql -u root -p
 ```
