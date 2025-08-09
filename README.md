@@ -108,10 +108,10 @@ yarn start
 ## ☁️ Deployment
 
 This application is deployed on **Render**. The backend is hosted as a web service, and the front end is deployed as a
-static site.
+static site. Render uses `render.yaml` file.
 
 The PostgreSQL database is also hosted on Render. If you're deploying this yourself, make sure to update your database
-connection settings in the `.env` file to match your hosting provider.
+connection settings in the `.env` file to match your hosting provider and configure environment.
 
 ---
 

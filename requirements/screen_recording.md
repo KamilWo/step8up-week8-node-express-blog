@@ -1,6 +1,6 @@
 ## 🛠️ Recommended Free Tools for Recording Your Script in Action
 
-Here are some free tools to record a demonstration of your Python README generator script. These tools work across
+Here are some free tools to record a demonstration of your Blog Full-Stack application. These tools work across
 different operating systems and are simple to use.
 
 ---
