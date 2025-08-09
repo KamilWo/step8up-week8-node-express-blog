@@ -71,6 +71,7 @@
     "parcel": "^2.15.4",
     "pg": "^8.16.3",
     "pg-hstore": "^2.3.4",
+    "rimraf": "^6.0.1",
     "sequelize": "^6.37.7",
     "uuid": "^11.1.0",
     "yarn": "^1.22.22"
@@ -84,7 +85,6 @@
     "lint-staged": "^16.1.2",
     "nodemon": "^3.1.10",
     "prettier": "^3.6.2",
-    "rimraf": "^6.0.1",
     "stylelint": "^16.20.0",
     "stylelint-config-standard": "^38.0.0",
     "supertest": "^7.1.3"
