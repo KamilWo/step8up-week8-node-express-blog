@@ -1,4 +1,4 @@
-import * as api from './api.js';
+import * as api from './api.mjs';
 
 const postList = document.getElementById("post-list");
 const categoryTagsContainer = document.getElementById("category-tags");

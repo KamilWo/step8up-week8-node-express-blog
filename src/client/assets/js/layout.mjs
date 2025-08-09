@@ -1,4 +1,4 @@
-import * as api from "./api.js";
+import * as api from "./api.mjs";
 
 /**
  * Checks session storage for logged-in user data.
