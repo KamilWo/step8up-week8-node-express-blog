@@ -1,10 +1,28 @@
 # 🚀 Full Stack Blog Application
 
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+
+---
+
+## 🌐 Website public URL
+
+Render.com
+URL: [https://step8up-week8-node-express-blog.onrender.com/](https://step8up-week8-node-express-blog.onrender.com/)
+
+---
+
 ## 📝 Project Overview
 
 This project is a full-stack **blog application** that lets users create, read, update, and delete their own blog posts.
 The front end interacts with a **REST API** built with **Node.js** and **Express**, which performs **CRUD operations**
 on a **PostgreSQL database**.
+
+---
+
+## How to use it?
+
+After opening the website, please use `Register` button in the top right corner to register as a new user, and
+then will be able to create new, update existing and delete your own posts only.
 
 ### ✨ Key Features
 
@@ -13,11 +31,19 @@ on a **PostgreSQL database**.
 * **Content Filtering:** Easily browse and filter blog posts by category.
 * **Full-Stack:** The application is a complete solution, from the front-end interface to the back-end database.
 
+### ✨ Additional Features
+
+* **Application can work with both MySQL and PostgreSQL**, when configuration is updated in the `.env` file.
+
+---
+
 ### 🛠️ Technologies Used
 
 * **Backend:** Node.js, Express.js
 * **Database:** PostgreSQL
 * **Deployment:** Render
+
+---
 
 ## 💻 Getting Started
 
@@ -37,7 +63,9 @@ cd step8up-week8-node-express-blog
 ```bash
 npm install
 ```
+
 or
+
 ```bash
 yarn install
 ```
@@ -53,7 +81,9 @@ yarn install
 ```bash
 npm run seed
 ```
+
 or
+
 ```bash
 yarn run seed
 ```
@@ -63,13 +93,17 @@ yarn run seed
 ```bash
 npm start
 ```
+
 or
+
 ```bash
 yarn start
 ```
 
 6. **View the application:**
    Open your web browser and navigate to `http://localhost:3000`.
+
+---
 
 ## ☁️ Deployment
 
@@ -78,6 +112,8 @@ static site.
 
 The PostgreSQL database is also hosted on Render. If you're deploying this yourself, make sure to update your database
 connection settings in the `.env` file to match your hosting provider.
+
+---
 
 ## 📚 Resources
 
